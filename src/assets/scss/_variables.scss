@@ -1,0 +1,52 @@
+$primary:#FF2E00;
+// $secondary:#000C43;
+$secondary:#031258;
+$royal:#0E33CB;
+$font-color:#828282;
+$white:#ffffff;
+$black:#000000;
+$input-border:#B9B9B9;
+
+$theme-color:();
+$theme-colors: map-merge((
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    #00DC25,
+  "info":       #24D2FF,
+  "warning":    #FF8800,
+  "danger":     #F20010,
+  "light":      $white,
+  "dark":       $black
+), $theme-color);
+
+$grid-breakpoints:(
+  xs:414px,
+  sm:576px,
+  md:768px,
+  lg:992px,
+  xl:1200px,
+  xxl:1440px
+) !default;
+
+html, body{
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  color: $black;
+  background: $white;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+}
+
+p{
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: $font-color;
+  letter-spacing: 1px;
+  line-height: 28px;
+}
+
+#app{
+  height: 100%;
+}
