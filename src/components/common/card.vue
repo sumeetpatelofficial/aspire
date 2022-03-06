@@ -5,7 +5,7 @@
     </div>
     <h3 class="card-holder-name">{{ card.cardHolderName }}</h3>
     <div class="card-number">
-      <div class="row">
+      <div :class="$screen.width > 576 ? 'row':'form-row'">
         <div class="col-auto">
           <span v-if="showNumber">{{ card.CardChunk1 }}</span>
           <span v-else
