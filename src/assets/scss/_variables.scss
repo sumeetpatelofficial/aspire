@@ -1,10 +1,15 @@
 $primary:#01D167;
 $secondary:#0C365A;
+$darkblue:#325BAF;
 $info:#23CEFD;
 $white:#ffffff;
 $black:#000000;
 $text:#222222;
 $light-gray:#DDDDDD;
+$light-gray2:#d5d5d5;
+$light-gray3:#f5f5f5;
+
+
 $theme-color:();
 $theme-colors: map-merge((
   "primary":    $primary,
@@ -12,16 +17,17 @@ $theme-colors: map-merge((
   "success":    #00DC25,
   "info":       $info,
   "warning":    #FF8800,
-  "danger":     #F20010,
+  "danger":     #d80909,
   "light":      $white,
   "dark":       $black
 ), $theme-color);
 
-$grid-breakpoints:(
-  xs:414px,
-  sm:576px,
-  md:768px,
-  lg:992px,
-  xl:1200px,
-  xxl:1440px
+// screens sizes
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1440px,
 ) !default;

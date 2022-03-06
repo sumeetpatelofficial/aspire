@@ -6,6 +6,7 @@
   padding: 10px;
   background: $white;
   filter: drop-shadow(0px 0px 10px rgba(0,0,0,.14));
+  z-index: 10;
   @include media-breakpoint-up(md) {
     display: block;
     background: transparent;
@@ -28,6 +29,7 @@
       position: relative;
       display: block;
       margin: 15px 0;
+      @include font-size(13px);
       color: rgba($color: $white, $alpha: 0.3);
     }
   }
