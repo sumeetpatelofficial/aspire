@@ -9,6 +9,7 @@
         </div>
       </div>
       <div class="col-auto">
+        <img class="d-md-none d-sm-block mobile-logo" src="@/assets/images/favicon.svg" alt="" srcset="">
         <div class="add-new-card">
         <b-link v-if="$screen.width<576" v-b-modal.addNewCard class="text-info"><i class="fa fa-plus-circle"></i> New Card</b-link>
         <b-button v-else variant="secondary" v-b-modal.addNewCard>
@@ -24,7 +25,7 @@
             <div class="row" :class="{'no-gutters':$screen.width<576}">
               <div class="col-md-6 col-lg-6 col-xl-6">
                 <div class="card-area">                  
-                  <div class="position-relative">
+                  <div class="position-relative" v-if="cardList.length">
                     <!-- Card carousel -->
                     <swiper
                       ref="swiper"
@@ -44,6 +45,14 @@
                     </swiper>
                     <div class="swiper-pagination" slot="pagination"></div>
                     <!-- Card carousel -->
+                  </div>
+                  <div v-else>
+                    <div class="debit-card">
+                      <p class="text-white">No Cards added Yet.</p>
+                      <h4>
+                        <b-link class="text-white" v-b-modal.addNewCard>Click here to add a card</b-link>
+                      </h4>
+                    </div>
                   </div>
                   <!-- Card Action Button Start -->
                   <div class="icon-box-area p-3">

@@ -44,6 +44,12 @@
   }
 }
 
+.mobile-logo{
+  position: absolute;
+  right: 15px;
+  top: -40px;
+}
+
 // simple tabs with line, under tab link with animation
 .line-tabs {
   position: relative;  
@@ -392,13 +398,15 @@
     position: relative;
     font-weight: 600;
     margin-bottom: 15px;
-    @include font-size(9pt);
+    @include font-size(12pt);
+    letter-spacing: 9px;
     @include media-breakpoint-up(md){
       @include font-size(12pt);
+      letter-spacing: 7px;
     }
-    letter-spacing: 7px;
     i{
-      @include font-size(10px);
+      @include font-size(14px);
+      letter-spacing: 5px;
       @include media-breakpoint-up(md){
         @include font-size(14px);
       }
