@@ -224,9 +224,11 @@
     }
     border-bottom: $light-gray3 solid 1px;
     margin: 0 0 15px 0;
-    .inner-list-content{
+    .inner-list-content{        
       h5{
+        @include font-size(18px);
         margin-bottom: 5px;
+        font-weight: 600;
         @include media-breakpoint-down(sm){
           @include font-size(18px);
         }
@@ -379,7 +381,7 @@
     font-weight: 700;
     @include font-size(14pt);
     @include media-breakpoint-up(md){
-      @include font-size(18pt);
+      @include font-size(20pt);
       margin-bottom: 30px;
     }
     letter-spacing: 1px;
@@ -398,7 +400,7 @@
     i{
       @include font-size(10px);
       @include media-breakpoint-up(md){
-        @include font-size(16px);
+        @include font-size(14px);
       }
     }
   }
@@ -415,6 +417,7 @@
     i{
       vertical-align: middle;
       @include font-size(10px);
+      margin-top: -3px;
       @include media-breakpoint-up(md){
         @include font-size(14px);
       }

@@ -7,39 +7,39 @@
     <div class="card-number">
       <div class="row">
         <div class="col-auto">
-          <span v-if="showNumber">{{ card.CardNumber1 }}</span>
+          <span v-if="showNumber">{{ card.CardChunk1 }}</span>
           <span v-else
-            ><i class="fas fa-star-of-life"></i
-            ><i class="fas fa-star-of-life"></i
-            ><i class="fas fa-star-of-life"></i
-            ><i class="fas fa-star-of-life"></i
+            ><i class="fas fa-circle"></i
+            ><i class="fas fa-circle"></i
+            ><i class="fas fa-circle"></i
+            ><i class="fas fa-circle"></i
           ></span>
         </div>
         <div class="col-auto">
-          <span v-if="showNumber">{{ card.CardNumber3 }}</span>
+          <span v-if="showNumber">{{ card.CardChunk3 }}</span>
           <span v-else
-            ><i class="fas fa-star-of-life"></i
-            ><i class="fas fa-star-of-life"></i
-            ><i class="fas fa-star-of-life"></i
-            ><i class="fas fa-star-of-life"></i
+            ><i class="fas fa-circle"></i
+            ><i class="fas fa-circle"></i
+            ><i class="fas fa-circle"></i
+            ><i class="fas fa-circle"></i
           ></span>
         </div>
         <div class="col-auto">
-          <span v-if="showNumber">{{ card.CardNumber3 }}</span>
+          <span v-if="showNumber">{{ card.CardChunk3 }}</span>
           <span v-else
-            ><i class="fas fa-star-of-life"></i
-            ><i class="fas fa-star-of-life"></i
-            ><i class="fas fa-star-of-life"></i
-            ><i class="fas fa-star-of-life"></i
+            ><i class="fas fa-circle"></i
+            ><i class="fas fa-circle"></i
+            ><i class="fas fa-circle"></i
+            ><i class="fas fa-circle"></i
           ></span>
         </div>
         <div class="col-auto">
-          <span v-if="showNumber">2020</span>
+          <span v-if="showNumber">{{ card.CardChunk4 }}</span>
           <span v-else
-            ><i class="fas fa-star-of-life"></i
-            ><i class="fas fa-star-of-life"></i
-            ><i class="fas fa-star-of-life"></i
-            ><i class="fas fa-star-of-life"></i
+            ><i class="fas fa-circle"></i
+            ><i class="fas fa-circle"></i
+            ><i class="fas fa-circle"></i
+            ><i class="fas fa-circle"></i
           ></span>
         </div>
       </div>
