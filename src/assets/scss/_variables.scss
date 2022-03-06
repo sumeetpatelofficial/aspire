@@ -1,0 +1,27 @@
+$primary:#01D167;
+$secondary:#0C365A;
+$info:#23CEFD;
+$white:#ffffff;
+$black:#000000;
+$text:#222222;
+$light-gray:#DDDDDD;
+$theme-color:();
+$theme-colors: map-merge((
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    #00DC25,
+  "info":       $info,
+  "warning":    #FF8800,
+  "danger":     #F20010,
+  "light":      $white,
+  "dark":       $black
+), $theme-color);
+
+$grid-breakpoints:(
+  xs:414px,
+  sm:576px,
+  md:768px,
+  lg:992px,
+  xl:1200px,
+  xxl:1440px
+) !default;
