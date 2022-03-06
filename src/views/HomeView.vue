@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{'bg-secondary':$screen.width < 576}">
     <Sidelinks />
     <MainContentArea />
   </div>
