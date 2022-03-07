@@ -4,6 +4,8 @@ import * as types from "./mutation-types";
 import VuexPersistence from "vuex-persist";
 Vue.use(Vuex);
 
+const vuexLocal = new VuexPersistence({storage: window.localStorage, key:'aspire'});
+
 export default new Vuex.Store({
   state: {
     transactionHistoryList: [
@@ -54,8 +56,12 @@ export default new Vuex.Store({
     [types.SET_CARD_DETAILS](state, cardDetails) {
       state.cardDetails.push(cardDetails);
     },
-    [types.REMOVE_CARD_DETAILS](state) {
-      state.cardDetails.splice(0,1);
+    [types.REMOVE_CARD_DETAILS](state, index) {
+      state.cardDetails.splice(index,1);
+    },
+    [types.FREEZE_CARD](state, index) {
+      const isFreeze = state.cardDetails[index].ifIsFreeze;
+      Vue.set(state.cardDetails[index], "ifIsFreeze", !isFreeze)
     },
   },
   actions: {
@@ -65,9 +71,14 @@ export default new Vuex.Store({
     addCardDetails({ commit }, cardDetails) {
       commit(types.SET_CARD_DETAILS, cardDetails);
     },
-    cancelCardDetails({ commit }) {
-      commit(types.REMOVE_CARD_DETAILS);
+    cancelCardDetails({ commit }, index) {      
+      commit(types.REMOVE_CARD_DETAILS, index);
+    },
+    freezeCard({ commit }, index) {
+      console.log(index)
+      commit(types.FREEZE_CARD, index);
     },
   },
   modules: {},
+  plugins: [vuexLocal.plugin],
 });
