@@ -4,8 +4,6 @@ import * as types from "./mutation-types";
 import VuexPersistence from "vuex-persist";
 Vue.use(Vuex);
 
-const vuexLocalStorage = new VuexPersistence({ storage: window.localStorage });
-
 export default new Vuex.Store({
   state: {
     transactionHistoryList: [
@@ -46,25 +44,30 @@ export default new Vuex.Store({
         transactionType:'charged',
       },
     ],
-    cardDetails: [],
+    cardDetails: <any>[],
   },
   getters: {},
-  mutations: {
+  mutations: {    
     [types.SET_TRANSACTION_HISTORY_LIST](state, transactionHistoryList) {
       state.transactionHistoryList = transactionHistoryList;
     },
     [types.SET_CARD_DETAILS](state, cardDetails) {
-      state.cardDetails = cardDetails;
+      state.cardDetails.push(cardDetails);
+    },
+    [types.REMOVE_CARD_DETAILS](state) {
+      state.cardDetails.splice(0,1);
     },
   },
   actions: {
     changeTransactionHistoryList({ commit }, transactionHistoryList) {
       commit(types.SET_TRANSACTION_HISTORY_LIST, transactionHistoryList);
     },
-    setCardDetails({ commit }, cardDetails) {
+    addCardDetails({ commit }, cardDetails) {
       commit(types.SET_CARD_DETAILS, cardDetails);
+    },
+    cancelCardDetails({ commit }) {
+      commit(types.REMOVE_CARD_DETAILS);
     },
   },
   modules: {},
-  plugins: [vuexLocalStorage.plugin],
 });
