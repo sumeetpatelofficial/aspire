@@ -144,55 +144,7 @@
                             v-for="(transaction, t) in recentTransactionsList"
                             :key="t"
                           >
-                            <div :class="$screen.width > 576 ? 'row':'form-row'">
-                              <div class="col-auto">
-                                <div class="list-icon">
-                                  <img
-                                    :src="
-                                      getImgUrl(transaction.transactionIcon)
-                                    "
-                                    :alt="transaction.transactionDesc"
-                                  />
-                                </div>
-                              </div>
-                              <div class="col">
-                                <div class="inner-list-content">
-                                  <h5 class="title">
-                                    {{ transaction.transactionName }}
-                                  </h5>
-                                  <span class="date">{{
-                                    transaction.transactionDate
-                                  }}</span>
-                                  <div class="card-info">
-                                    <b-badge
-                                      ><img
-                                        src="../assets/images/business-and-finance.svg"
-                                        :alt="
-                                          transaction.transactionDesc
-                                        " /></b-badge
-                                    ><span>{{
-                                      transaction.transactionDesc
-                                    }}</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-auto digit-box">
-                                <h5
-                                  :class="{
-                                    'text-primary':
-                                      transaction.transactionType == 'refund',
-                                  }"
-                                >
-                                  {{
-                                    transaction.transactionType == "charged"
-                                      ? "-"
-                                      : "+"
-                                  }}
-                                  S$ {{ transaction.transactionAmount }}
-                                  <i class="fa fa-angle-right"></i>
-                                </h5>
-                              </div>
-                            </div>
+                            <TransactionListItem :transaction="transaction" :index="t" />
                           </li>
                         </ul>
                       </div>
@@ -253,6 +205,7 @@
     </b-modal>
     <!-- End Popup for add New Card -->
 
+    <!-- Delete Modal -->
     <b-modal
       id="deleteModal"
       centered
@@ -262,6 +215,7 @@
     >
       <ConfirmModal @confirm="removeCard()" @cancel="cancelCard"></ConfirmModal>
     </b-modal>
+    <!-- Delete Modal -->
   </div>
 </template>
 
@@ -269,11 +223,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import ConfirmModal from "@/components/ConfirmModal.vue";
 import Card from "@/components/common/card.vue";
+import TransactionListItem from "@/components/common/transactionListItem.vue";
 
 @Component({
   components: {
     ConfirmModal,
-    Card
+    Card, 
+    TransactionListItem
   },
 })
 export default class MainContentArea extends Vue {
@@ -281,11 +237,6 @@ export default class MainContentArea extends Vue {
   cardList: any = this.$store.state.cardDetails;
   cardHolderName: any = "";
   ifIsNumber: any = false;
-
-  // convert image URL
-  getImgUrl(pic: any) {
-    return require("../assets/images/" + pic);
-  }
 
   mounted() {
     this.$store.dispatch("setCardDetails", [

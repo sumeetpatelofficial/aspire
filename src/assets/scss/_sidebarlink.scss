@@ -80,13 +80,13 @@
       }
       &.active {
         span {
-          color: #01d167;
+          color: $primary;
         }
       }
       &:hover {
         text-decoration: none;
         span {
-          color: #01d167;
+          color: $primary;
         }
       }
     }

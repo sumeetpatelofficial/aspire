@@ -1,6 +1,6 @@
 .main-page-area {
   position: relative;
-  padding:15px 15px 60px;
+  padding: 15px 15px 60px;
   @include media-breakpoint-up(md) {
     height: 100%;
     width: calc(100% - 300px);
@@ -9,9 +9,9 @@
     background-color: $white;
   }
 
-  .avilable-balance{
+  .avilable-balance {
     color: $text;
-    @include media-breakpoint-down(sm){
+    @include media-breakpoint-down(sm) {
       color: $white;
     }
   }
@@ -21,7 +21,7 @@
     .badge {
       padding: 5px 10px;
       font-weight: 500;
-      color: #fff;
+      color: $white;
       border-radius: 5px;
       margin: 2px 10px 0 0;
       height: 100%;
@@ -30,21 +30,22 @@
     .balance-amount {
       font-size: 24px;
       font-weight: 700;
-      @include media-breakpoint-down(sm){
-        color:$white;
+      @include media-breakpoint-down(sm) {
+        color: $white;
       }
     }
   }
 
-  .add-new-card{
+  .add-new-card {
     position: relative;
-    a, a:hover{
+    a,
+    a:hover {
       text-decoration: none;
     }
   }
 }
 
-.mobile-logo{
+.mobile-logo {
   position: absolute;
   right: 15px;
   top: -40px;
@@ -52,10 +53,10 @@
 
 // simple tabs with line, under tab link with animation
 .line-tabs {
-  position: relative;  
+  position: relative;
   border-bottom: unset;
   margin-top: 20px;
-  @include media-breakpoint-up(md){
+  @include media-breakpoint-up(md) {
     margin-top: 60px;
     background: $white;
   }
@@ -66,7 +67,7 @@
     > .nav-item {
       margin-bottom: 0;
       margin-right: 15px;
-      @include media-breakpoint-up(md){
+      @include media-breakpoint-up(md) {
         margin-right: 30px;
       }
       > .nav-link {
@@ -81,7 +82,7 @@
         @include media-breakpoint-down(sm) {
           padding: 0.6rem 0.45rem;
           @include font-size(14px);
-          color: rgba($color: $white, $alpha: .5);
+          color: rgba($color: $white, $alpha: 0.5);
         }
         &.active {
           position: relative;
@@ -126,26 +127,26 @@
       }
     }
   }
-  .tab-content{
+  .tab-content {
     margin-top: 15px;
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       box-shadow: 0 2px 12px #00000014;
-      border: 1px solid #fcfcfc;
+      border: 1px solid $light-gray4;
       border-radius: 8px;
     }
   }
 }
 
 .accordion-area {
-  @include media-breakpoint-down(sm){
+  @include media-breakpoint-down(sm) {
     margin-right: -15px;
     margin-left: -15px;
     padding: 15px;
     background: $white;
   }
-  .panel{
+  .panel {
     position: relative;
-    border: 1px solid #f5f5f5;
+    border: 1px solid $light-gray3;
     border-radius: 8px;
     background-color: $white;
     z-index: 1;
@@ -153,17 +154,17 @@
       position: relative;
       background: #f5f9ff;
       padding: 30px 20px;
-      @include media-breakpoint-down(sm){
+      @include media-breakpoint-down(sm) {
         padding: 20px 15px;
       }
       display: flex;
       align-items: center;
       border-radius: 8px;
-      h5{
+      h5 {
         margin-left: 10px;
         margin-bottom: 0;
-        @include media-breakpoint-down(sm){
-          @include font-size(16px)
+        @include media-breakpoint-down(sm) {
+          @include font-size(16px);
         }
       }
       i {
@@ -176,14 +177,14 @@
         transform: translateY(-50%) rotate(0);
         transition: all ease-in-out 0.2s;
       }
-      &[aria-expanded="true"]{
-        i{
+      &[aria-expanded="true"] {
+        i {
           transform: translateY(-50%) rotate(180deg);
         }
       }
-    } 
-  }  
-  .more-link{
+    }
+  }
+  .more-link {
     position: relative;
     display: flex;
     background-color: rgba($color: $primary, $alpha: 0.15);
@@ -197,16 +198,16 @@
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     transition: all ease-in-out 0.2s;
-    a{
+    a {
       color: $primary;
       @include font-size(16px);
       font-weight: 500;
       text-decoration: none;
     }
 
-    &:hover{
+    &:hover {
       background-color: rgba($color: $primary, $alpha: 0.3);
-      a{
+      a {
         text-decoration: none;
       }
     }
@@ -221,7 +222,7 @@
     position: relative;
     width: 100%;
     padding: 15px 10px;
-    @include media-breakpoint-down(sm){
+    @include media-breakpoint-down(sm) {
       padding: 15px 0;
     }
     &:nth-last-of-type(1) {
@@ -230,12 +231,12 @@
     }
     border-bottom: $light-gray3 solid 1px;
     margin: 0 0 15px 0;
-    .inner-list-content{        
-      h5{
+    .inner-list-content {
+      h5 {
         @include font-size(18px);
         margin-bottom: 5px;
         font-weight: 600;
-        @include media-breakpoint-down(sm){
+        @include media-breakpoint-down(sm) {
           @include font-size(18px);
         }
       }
@@ -243,98 +244,91 @@
         color: #aaaaaa;
       }
       .card-info {
-        font-size: 12px;      
+        font-size: 12px;
         margin-top: 10px;
         display: flex;
         align-items: center;
-        span{
+        span {
           @include font-size(14px);
           font-weight: 500;
           color: $darkblue;
-          &.badge{
+          &.badge {
             margin-right: 8px;
-            background-color:$darkblue;
+            background-color: $darkblue;
             border-radius: 15px;
             width: 24px;
             height: 20px;
             vertical-align: middle;
           }
-        }      
+        }
       }
     }
-      .digit-box {
-        position: relative;
-        h5 {
-          font-weight: 700;         
-          i{
-            color: $light-gray2;
-            margin-left: 10px;
-          }     
+    .digit-box {
+      position: relative;
+      h5 {
+        font-weight: 700;
+        i {
+          color: $light-gray2;
+          margin-left: 10px;
         }
-        
       }
+    }
     .list-icon {
       width: 50px;
       height: 50px;
       border-radius: 100px;
       display: inline-block;
-      background: #009DFF1A;
+      background: #009dff1a;
       text-align: center;
       line-height: 50px;
-      @include media-breakpoint-down(sm){
+      @include media-breakpoint-down(sm) {
         width: 45px;
-      height: 45px;
-      line-height: 45px;
+        height: 45px;
+        line-height: 45px;
       }
+      &.color0{background: #009DFF1A;}
+      &.color1{background: #00D6B51A;}
+      &.color2{background: #F251951A;}
+      &.color3{background: #009DFF1A;}
     }
   }
 }
 
-.show-link {
-  color: #00ff80;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 600;
-  &:hover {
-    color: black;
-  }
-}
-
-.card-area{
+.card-area {
   position: relative;
   padding: 0;
-  @include media-breakpoint-up(xxl){
+  @include media-breakpoint-up(xxl) {
     padding: 0 20px;
   }
-  .show-number-toggle{
+  .show-number-toggle {
     position: relative;
-    display:table;
+    display: table;
     padding: 5px 10px;
     border-top-left-radius: 8px;
-    border-top-right-radius: 8px;        
+    border-top-right-radius: 8px;
     text-align: right;
     background: $white;
     margin-left: auto;
-    &::after{
+    &::after {
       position: absolute;
-      content: '';
+      content: "";
       width: 20px;
-      height:20px;
+      height: 20px;
       background: $white;
       right: 0;
       bottom: -20px;
     }
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       display: block;
       padding: 10px 0;
-      &::after{
-        content:none
+      &::after {
+        content: none;
       }
     }
-    a{
+    a {
       text-decoration: none;
       @include font-size(13px);
-      @include media-breakpoint-up(md){
+      @include media-breakpoint-up(md) {
         @include font-size(14px);
         font-weight: 600;
       }
@@ -349,16 +343,16 @@
   justify-content: space-between;
   padding: 10px 15px;
   border-radius: 10px;
-  background: $primary;  
+  background: $primary;
   color: $white;
-  @include media-breakpoint-up(md){
+  @include media-breakpoint-up(md) {
     min-height: 250px;
     padding: 25px 20px;
     border-radius: 15px;
   }
   .card-logo {
     width: 70px;
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       width: 100px;
     }
     display: block;
@@ -368,11 +362,11 @@
     img {
       width: 100%;
       height: auto;
-    }    
+    }
   }
-  .card-provider-logo{
+  .card-provider-logo {
     width: 56px;
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       width: 80px;
     }
     display: block;
@@ -386,7 +380,7 @@
     position: relative;
     font-weight: 700;
     @include font-size(14pt);
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       @include font-size(20pt);
       margin-bottom: 30px;
     }
@@ -400,33 +394,34 @@
     margin-bottom: 15px;
     @include font-size(12pt);
     letter-spacing: 9px;
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       @include font-size(12pt);
       letter-spacing: 7px;
     }
-    i{
+    i {
       @include font-size(14px);
       letter-spacing: 5px;
-      @include media-breakpoint-up(md){
+      @include media-breakpoint-up(md) {
         @include font-size(14px);
       }
     }
   }
-  .validity, .cvv{
+  .validity,
+  .cvv {
     display: inline-block;
     vertical-align: middle;
     margin-bottom: 15px;
     @include font-size(9pt);
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       @include font-size(12pt);
     }
     font-weight: 600;
     letter-spacing: 1px;
-    i{
+    i {
       vertical-align: middle;
       @include font-size(10px);
       margin-top: -3px;
-      @include media-breakpoint-up(md){
+      @include media-breakpoint-up(md) {
         @include font-size(14px);
       }
     }
@@ -436,18 +431,18 @@
   }
 }
 
-.swiper-pagination{
+.swiper-pagination {
   position: relative;
   margin-top: 15px;
   width: 100%;
-  .swiper-pagination-bullet{
+  .swiper-pagination-bullet {
     margin: 0 3px;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background-color: rgba($color: $primary, $alpha: 0.9);
     transition: all 0.3s ease-in-out;
-    &.swiper-pagination-bullet-active{
+    &.swiper-pagination-bullet-active {
       width: 16px;
       height: 8px;
       border-radius: 8px;
@@ -464,24 +459,15 @@
   border-radius: 15px;
   margin-top: 30px;
   text-align: center;
-  @include media-breakpoint-down(sm){
+  @include media-breakpoint-down(sm) {
     margin-right: -15px;
     margin-left: -15px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
-  .round-icon {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    border-radius: 100%;
-    color: #fff;
-    background: $secondary;
-    display: inline-block;
-  }
   p.icon-title {
     @include font-size(13px);
-    @include media-breakpoint-down(sm){
+    @include media-breakpoint-down(sm) {
       @include font-size(12px);
       line-height: 16px;
     }
@@ -490,66 +476,67 @@
   }
 }
 
-.form-group{
+.form-group {
   position: relative;
-  .control-label{
-    @include font-size(16px)
+  .control-label {
+    @include font-size(16px);
   }
-  .form-control{
-    height:calc(1.5em + 0.75rem + 8px)
+  .form-control {
+    height: calc(1.5em + 0.75rem + 8px);
   }
 }
 
-.confirm-modal{
+.confirm-modal {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 50px 20px 30px 20px;
-  .delete{
+  .delete {
     width: 200px;
     height: 200px;
     text-align: center;
     margin: 0 auto 30px;
     border-radius: 50%;
     background-color: rgba($color: $danger, $alpha: 0.15);
-    @include media-breakpoint-down(sm){
+    @include media-breakpoint-down(sm) {
       width: 100px;
-      height: 100px
+      height: 100px;
     }
-    i{
-     @include font-size(64px);
-     line-height: 200px;
-     color: $danger;
-     @include media-breakpoint-down(sm){
-      @include font-size(36px);
-      line-height: 100px;
-    }
-    }
-  } 
-  p{
-    margin-bottom: 20px;
-  } 
-  h4{
-      color: $secondary;
-      @include font-size(32px);
-      @include media-breakpoint-down(sm){
-        @include font-size(24px);
-      }
-      font-weight: 700;
+    i {
+      @include font-size(64px);
+      line-height: 200px;
       color: $danger;
-  }
-  h6{
-      color: $secondary;
-      @include font-size(18px);
-      @include media-breakpoint-down(sm){
-        @include font-size(16px);
+      @include media-breakpoint-down(sm) {
+        @include font-size(36px);
+        line-height: 100px;
       }
-      font-weight: 600;
-      margin-bottom: 30px;
-
+    }
+  }
+  p {
+    margin-bottom: 20px;
+  }
+  h4 {
+    color: $secondary;
+    @include font-size(32px);
+    @include media-breakpoint-down(sm) {
+      @include font-size(24px);
+    }
+    font-weight: 700;
+    color: $danger;
+  }
+  h6 {
+    color: $secondary;
+    @include font-size(18px);
+    @include media-breakpoint-down(sm) {
+      @include font-size(16px);
+    }
+    font-weight: 600;
+    margin-bottom: 30px;
   }
 }
 
-.cursor-pointer{cursor: pointer;}
+.cursor-pointer {
+  cursor: pointer;
+}
