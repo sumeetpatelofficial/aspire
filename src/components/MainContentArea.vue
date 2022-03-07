@@ -255,11 +255,11 @@
                 <b-form-group>
                   <label for="" class="control-label">Expiry Month</label>
                   <b-form-select
-                  name="month"
+                    name="month"
                     v-model="cardDetails.expireMonth"
                     v-validate="{ required: true }"
                     :options="monthOptions"
-                    :class="[{ 'is-invalid': errors.has('cardNumber') }]"
+                    :class="[{ 'is-invalid': errors.has('month') }]"
                   ></b-form-select>
                   <span v-show="errors.has('month')" class="text-danger m-0"
                     >Month is required.</span
@@ -274,7 +274,7 @@
                     v-model="cardDetails.expireYear"
                     v-validate="{ required: true }"
                     :options="yearOptions"
-                    :class="[{ 'is-invalid': errors.has('cardNumber') }]"
+                    :class="[{ 'is-invalid': errors.has('year') }]"
                   ></b-form-select>
                   <span v-show="errors.has('year')" class="text-danger m-0"
                     >Year is required.</span
@@ -293,7 +293,7 @@
                 placeholder="***"
                 v-validate="{ required: true, max:3, min:3 }"
                 v-model="cardDetails.cvvNumber"                
-                :class="[{ 'is-invalid': errors.has('cardNumber') }]"
+                :class="[{ 'is-invalid': errors.has('cvvNumber') }]"
               ></b-form-input>
               <span v-show="errors.has('cvvNumber')" class="text-danger m-0"
                 >CVV Number is required.</span
