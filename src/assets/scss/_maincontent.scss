@@ -394,16 +394,23 @@
     margin-bottom: 15px;
     @include font-size(12pt);
     letter-spacing: 9px;
+    transition: all ease-in-out 0.2s;
     @include media-breakpoint-up(md) {
-      @include font-size(12pt);
-      letter-spacing: 7px;
+      @include font-size(18pt);
+      letter-spacing: 15px;
     }
     i {
       @include font-size(14px);
       letter-spacing: 5px;
+      vertical-align: middle;
       @include media-breakpoint-up(md) {
         @include font-size(14px);
-      }
+      } 
+      &.dot{
+        @include media-breakpoint-up(md) {
+          margin-right: 10px;
+        }
+      }     
     }
   }
   .validity,
@@ -423,7 +430,7 @@
       margin-top: -3px;
       @include media-breakpoint-up(md) {
         @include font-size(14px);
-      }
+      }      
     }
   }
   &.disabled {
@@ -481,7 +488,7 @@
   .control-label {
     @include font-size(16px);
   }
-  .form-control {
+  .form-control, .custom-select {
     height: calc(1.5em + 0.75rem + 8px);
   }
 }
@@ -539,4 +546,8 @@
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.bg-blue{
+  background: #536DFF;
 }

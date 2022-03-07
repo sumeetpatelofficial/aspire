@@ -1,6 +1,9 @@
 <template>
   <div class="main-page-area">
-    <div class="row" :class="$screen.width<576 ? 'align-items-end' : 'align-items-center'">
+    <div
+      class="row"
+      :class="$screen.width < 576 ? 'align-items-end' : 'align-items-center'"
+    >
       <div class="col">
         <p class="avilable-balance">Available Balance</p>
         <div class="balance-detail">
@@ -9,11 +12,22 @@
         </div>
       </div>
       <div class="col-auto">
-        <img class="d-md-none d-sm-block mobile-logo" src="@/assets/images/favicon.svg" alt="" srcset="">
+        <img
+          class="d-md-none d-sm-block mobile-logo"
+          src="@/assets/images/favicon.svg"
+          alt=""
+          srcset=""
+        />
         <div class="add-new-card">
-        <b-link v-if="$screen.width<576" v-b-modal.addNewCard class="text-info"><i class="fa fa-plus-circle"></i> New Card</b-link>
-        <b-button v-else variant="secondary" v-b-modal.addNewCard>
-          <i class="fa fa-plus-circle"></i> New Card</b-button>
+          <b-link
+            v-if="$screen.width < 576"
+            v-b-modal.addNewCard
+            class="text-info"
+            ><i class="fa fa-plus-circle"></i> New Card</b-link
+          >
+          <b-button v-else variant="secondary" v-b-modal.addNewCard>
+            <i class="fa fa-plus-circle"></i> New Card</b-button
+          >
         </div>
       </div>
     </div>
@@ -21,26 +35,39 @@
     <div class="line-tabs">
       <b-tabs>
         <b-tab title="My debit cards" active>
-          <div :class="{'p-4 bg-body rounded':$screen.width>576}">
-            <div class="row" :class="{'no-gutters':$screen.width<576}">
+          <div :class="{ 'p-4 bg-body rounded': $screen.width > 576 }">
+            <div class="row" :class="{ 'no-gutters': $screen.width < 576 }">
               <div class="col-md-6 col-lg-6 col-xl-6">
-                <div class="card-area">                  
-                  <div class="position-relative" v-if="$store.state.cardDetails.length">
+                <div class="card-area">
+                  <div
+                    class="position-relative"
+                    v-if="$store.state.cardDetails.length"
+                  >
                     <!-- Card carousel -->
                     <swiper
                       ref="swiper"
                       class="swiper swiper-slider"
-                      :options="swiperSliderOption"
+                      :options="swiperSliderOption"                      
                     >
-                      <swiper-slide v-for="(card, c) in $store.state.cardDetails" :key="c">
-                        <p class="show-number-toggle">                   
-                            <b-link @click="ifIsNumber = !ifIsNumber">
-                              <i class="fas" :class="ifIsNumber ? 'fa-eye-slash' : 'fa-eye'"></i> 
-                              {{ifIsNumber ? 'Hide card number':'Show card number'}}
-                            </b-link>
+                      <swiper-slide
+                        v-for="(card, c) in $store.state.cardDetails"
+                        :key="c"
+                      >
+                        <p class="show-number-toggle">
+                          <b-link @click="ifIsNumber = !ifIsNumber">
+                            <i
+                              class="fas"
+                              :class="ifIsNumber ? 'fa-eye-slash' : 'fa-eye'"
+                            ></i>
+                            {{
+                              ifIsNumber
+                                ? "Hide card number"
+                                : "Show card number"
+                            }}
+                          </b-link>
                         </p>
-                        <Card :card="card" :showNumber="ifIsNumber" />                        
-                      </swiper-slide>                  
+                        <Card :card="card" :showNumber="ifIsNumber" />
+                      </swiper-slide>
                     </swiper>
                     <div class="swiper-pagination" slot="pagination"></div>
                     <!-- Card carousel -->
@@ -49,14 +76,16 @@
                     <div class="debit-card">
                       <p class="text-white">No Cards added Yet.</p>
                       <h4>
-                        <b-link class="text-white" v-b-modal.addNewCard>Click here to add a card</b-link>
+                        <b-link class="text-white stretched-link" v-b-modal.addNewCard
+                          >Click here to add a card</b-link
+                        >
                       </h4>
                     </div>
                   </div>
                   <!-- Card Action Button Start -->
                   <div class="icon-box-area p-3">
-                    <div :class="$screen.width > 576 ? 'row':'form-row'">
-                      <div class="col cursor-pointer">
+                    <div :class="$screen.width > 576 ? 'row' : 'form-row'">
+                      <div class="col cursor-pointer" @click="$store.dispatch('freezeCard', checkIndex)">
                         <img src="../assets/images/Freeze card.svg" alt="" />
                         <p class="mb-0 icon-title">Freeze Card</p>
                       </div>
@@ -143,7 +172,10 @@
                             v-for="(transaction, t) in recentTransactionsList"
                             :key="t"
                           >
-                            <TransactionListItem :transaction="transaction" :index="t" />
+                            <TransactionListItem
+                              :transaction="transaction"
+                              :index="t"
+                            />
                           </li>
                         </ul>
                       </div>
@@ -171,26 +203,105 @@
       id="addNewCard"
       ref="modal"
       title="Add New Card"
-      @show="resetModal"
-      @hidden="resetModal"
+      @show="resetForm"
+      @hidden="resetForm"
       hide-footer
       hide-header-close
       centered
     >
       <b-form @submit.prevent="addNewCard()">
-        <b-form-group label-for="name">
-          <label for="" class="control-label">Name</label>
-          <b-form-input
-            id="name"
-            name="cardHolderName"
-            v-model="cardHolderName"
-            placeholder="Enter Name"
-            v-validate="{ required: true }"
-            :class="[{'is-invalid': errors.has('cardHolderName') }]"
-          ></b-form-input>
-          <span v-show="errors.has('cardHolderName')" class="text-danger m-0"
-          >Name is required.</span>
-        </b-form-group>        
+        <div class="row">
+          <div class="col-12">
+            <b-form-group label-for="name">
+              <label for="" class="control-label">Name</label>
+              <b-form-input
+                id="name"
+                name="cardHolderName"
+                v-model="cardDetails.cardHolderName"
+                placeholder="Enter Name"
+                v-validate="{ required: true }"
+                :class="[{ 'is-invalid': errors.has('cardHolderName') }]"
+              ></b-form-input>
+              <span
+                v-show="errors.has('cardHolderName')"
+                class="text-danger m-0"
+                >Name is required.</span
+              >
+            </b-form-group>
+          </div>
+
+          <div class="col-12">
+            <b-form-group label-for="card number">
+              <label for="" class="control-label">Card Number</label>
+              <b-form-input
+                id="name"
+                name="cardNumber"
+                maxlength="19"
+                v-model="cardDetails.cardNumber"
+                placeholder="**** **** **** ****"
+                v-validate="{ required: true, min:19, max:19 }"
+                :class="[{ 'is-invalid': errors.has('cardNumber') }]"
+                @keyup="inputFormatCardNumber"
+              ></b-form-input>
+              <span v-show="errors.has('cardNumber')" class="text-danger m-0"
+                >Card Number is required.</span
+              >
+            </b-form-group>
+          </div>
+
+          <div class="col-12">
+            <div class="row">
+              <div class="col-6">
+                <b-form-group>
+                  <label for="" class="control-label">Expiry Month</label>
+                  <b-form-select
+                  name="month"
+                    v-model="cardDetails.expireMonth"
+                    v-validate="{ required: true }"
+                    :options="monthOptions"
+                    :class="[{ 'is-invalid': errors.has('cardNumber') }]"
+                  ></b-form-select>
+                  <span v-show="errors.has('month')" class="text-danger m-0"
+                    >Month is required.</span
+                  >
+                </b-form-group>
+              </div>
+              <div class="col-6">
+                <b-form-group>
+                  <label for="" class="control-label">Expiry Year</label>
+                  <b-form-select
+                  name="year"
+                    v-model="cardDetails.expireYear"
+                    v-validate="{ required: true }"
+                    :options="yearOptions"
+                    :class="[{ 'is-invalid': errors.has('cardNumber') }]"
+                  ></b-form-select>
+                  <span v-show="errors.has('year')" class="text-danger m-0"
+                    >Year is required.</span
+                  >
+                </b-form-group>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <b-form-group>
+              <label for="" class="control-label">CVV Number</label>
+              <b-form-input
+                id="name"
+                name="cvvNumber"
+                maxlength="3"
+                placeholder="***"
+                v-validate="{ required: true, max:3, min:3 }"
+                v-model="cardDetails.cvvNumber"                
+                :class="[{ 'is-invalid': errors.has('cardNumber') }]"
+              ></b-form-input>
+              <span v-show="errors.has('cvvNumber')" class="text-danger m-0"
+                >CVV Number is required.</span
+              >
+            </b-form-group>
+          </div>
+        </div>
+
         <div class="text-right mt-3">
           <b-button
             variant="light"
@@ -224,14 +335,14 @@ import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import ConfirmModal from "@/components/ConfirmModal.vue";
 import Card from "@/components/common/card.vue";
 import TransactionListItem from "@/components/common/transactionListItem.vue";
-import extend from 'vee-validate';
+
 @Component({
   components: {
     Swiper,
     SwiperSlide,
     ConfirmModal,
-    Card, 
-    TransactionListItem
+    Card,
+    TransactionListItem,
   },
 })
 export default class MainContentArea extends Vue {
@@ -239,21 +350,19 @@ export default class MainContentArea extends Vue {
   cardHolderName: any = "";
   ifIsNumber: any = false;
 
-  mounted() {
-    this.$store.dispatch("addCardDetails", 
-      {
-        id: this.randomCVV(),
-        cardHolderName: "Sumeet Patel",
-        CardChunk1: this.randomCardNumber(),
-        CardChunk2: this.randomCardNumber(),
-        CardChunk3: this.randomCardNumber(),
-        CardChunk4: this.randomCardNumber(),
-        cvvNumber: this.randomCVV(),
-        expireDate: this.randomDate(new Date(2012, 0, 1), new Date()),
-        ifIsFreeze: false,  
-        ifIsCancel: false,
-      },
-    );
+  cardDetails: any = {
+    id: "",
+    cardHolderName: "",
+    cardNumber: "",
+    cvvNumber: "",
+    expireMonth: "",
+    expireYear: "",
+    ifIsFreeze: false,
+  };
+
+  // getting the curremt index
+  get checkIndex(){
+    return (this.$refs as any).swiper.$swiper.activeIndex
   }
 
   // slider's options
@@ -281,7 +390,7 @@ export default class MainContentArea extends Vue {
       },
     },
     pagination: {
-      el: '.swiper-pagination',
+      el: ".swiper-pagination",
       clickable: true,
     },
   };
@@ -291,16 +400,13 @@ export default class MainContentArea extends Vue {
     this.$validator.validateAll().then((result) => {
       if (result) {
         let cardDetails = {
-          id: this.randomCVV(),
-          cardHolderName: this.cardHolderName,
-          CardChunk1: this.randomCardNumber(),
-          CardChunk2: this.randomCardNumber(),
-          CardChunk3: this.randomCardNumber(),
-          CardChunk4: this.randomCardNumber(),
-          cvvNumber: this.randomCVV(),
-          expireDate: this.randomDate(new Date(2012, 0, 1), new Date()),
+          id: this.randomId(),
+          cardHolderName: this.cardDetails.cardHolderName,
+          cardNumber: this.cardDetails.cardNumber,
+          cvvNumber: this.cardDetails.cvvNumber,
+          expireDate:
+            this.cardDetails.expireMonth + " / " + this.cardDetails.expireYear,
           ifIsFreeze: false,
-          ifIsCancel: false,
         };
         this.$store.dispatch("addCardDetails", cardDetails);
         this.$toasted.show("Card added sucessfully", {
@@ -314,25 +420,13 @@ export default class MainContentArea extends Vue {
     });
   }
 
-  // Generate 4 digits of 16 digit for card.
-  randomCardNumber() {
-    return Math.floor(1000 + Math.random() * 9000);
-  }
-  
-  // Random CVV
-  randomCVV() {
+  // Random Id
+  randomId() {
     return Math.floor(Math.random() * (999 - 100 + 1) + 100);
   }
 
-  // Random Card Validity
-  randomDate(start: any, end: any) {
-    return new Date(
-      start.getTime() + Math.random() * (end.getTime() - start.getTime())
-    );
-  }
-
   removeCard() {
-    this.$store.dispatch("cancelCardDetails");
+    this.$store.dispatch("cancelCardDetails", this.checkIndex);
     this.$toasted.show("Card removed sucessfully", {
       type: "success",
       theme: "toasted-primary",
@@ -342,8 +436,16 @@ export default class MainContentArea extends Vue {
     this.$bvModal.hide("deleteModal");
   }
 
-  resetModal() {
-    this.cardHolderName = "";
+  resetForm() {
+    this.cardDetails = {
+      id: "",
+      cardHolderName: "",
+      cardNumber: "",
+      cvvNumber: "",
+      expireMonth: "",
+      expireYear: "",
+      ifIsFreeze: false,
+    };
   }
 
   cancelCard() {
@@ -352,6 +454,40 @@ export default class MainContentArea extends Vue {
 
   showDeleteModal() {
     this.$bvModal.show("deleteModal");
+  }
+
+  yearOptions: any = [
+    { text: "-- select a year ---", value: "" },
+    { text: "2022", value: "2022" },
+    { text: "2023", value: "2023" },
+    { text: "2024", value: "2024" },
+    { text: "2025", value: "2025" },
+    { text: "2026", value: "2026" },
+    { text: "2027", value: "2027" },
+    { text: "2028", value: "2028" },
+  ];
+  monthOptions: any = [
+    { text: "-- select a month ---", value: "" },
+    { text: "01", value: "01" },
+    { text: "02", value: "02" },
+    { text: "03", value: "03" },
+    { text: "04", value: "04" },
+    { text: "05", value: "05" },
+    { text: "06", value: "06" },
+    { text: "07", value: "07" },
+    { text: "08", value: "08" },
+    { text: "09", value: "09" },
+    { text: "10", value: "10" },
+    { text: "11", value: "11" },
+    { text: "12", value: "12" },
+  ];
+
+  inputFormatCardNumber() {
+      let text = this.cardDetails.cardNumber.split(" ").join("") 
+      if (text.length > 0) {
+        text = text.match(new RegExp(/.{1,4}/, 'g')).join(" ").replace(new RegExp(/[^\d]/, 'ig'), " ");
+      }
+      this.cardDetails.cardNumber = text       
   }
 }
 </script>

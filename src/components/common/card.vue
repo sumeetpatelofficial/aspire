@@ -1,5 +1,5 @@
 <template>
-  <div class="debit-card">
+  <div class="debit-card" :class="{'bg-blue':card.ifIsFreeze}">
     <div class="card-logo">
       <img :src="aspireLogo" alt="" />
     </div>
@@ -7,35 +7,10 @@
     <div class="card-number">
       <div :class="$screen.width > 576 ? 'row':'form-row'">
         <div class="col-auto">
-          <span v-if="showNumber">{{ card.CardChunk1 }}</span>
-          <span v-else
-            ><i class="fas fa-circle"></i
-            ><i class="fas fa-circle"></i
-            ><i class="fas fa-circle"></i
-            ><i class="fas fa-circle"></i
-          ></span>
+          <span v-if="showNumber" v-html="card.cardNumber"></span>
+          <span v-else v-html="relacedValue"></span>
         </div>
-        <div class="col-auto">
-          <span v-if="showNumber">{{ card.CardChunk3 }}</span>
-          <span v-else
-            ><i class="fas fa-circle"></i
-            ><i class="fas fa-circle"></i
-            ><i class="fas fa-circle"></i
-            ><i class="fas fa-circle"></i
-          ></span>
-        </div>
-        <div class="col-auto">
-          <span v-if="showNumber">{{ card.CardChunk3 }}</span>
-          <span v-else
-            ><i class="fas fa-circle"></i
-            ><i class="fas fa-circle"></i
-            ><i class="fas fa-circle"></i
-            ><i class="fas fa-circle"></i
-          ></span>
-        </div>
-        <div class="col-auto">
-          <span>{{ card.CardChunk4 }}</span>
-        </div>
+        <!-- <i class="fas fa-circle"></i> -->
       </div>
     </div>
     <div class="row">
@@ -63,10 +38,15 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class card extends Vue {
     @Prop() card:any;
-    @Prop({type:Boolean}) showNumber:any;
+    @Prop({type:Boolean}) showNumber:any;    
 
     aspireLogo:any=require("@/assets/images/LogoWhite.svg");
     visaLogo:any=require("@/assets/images/Visa Logo.svg");
+
+    get relacedValue(){      
+      let newValue = this.card.cardNumber.replace(/\d{4}(?= \d{1})/g, '<i class="fas fa-circle dot"></i><i class="fas fa-circle dot"></i><i class="fas fa-circle dot"></i><i class="fas fa-circle dot"></i>')
+      return newValue;
+    }
 }
 </script>
 
