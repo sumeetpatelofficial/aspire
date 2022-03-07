@@ -34,13 +34,7 @@
           ></span>
         </div>
         <div class="col-auto">
-          <span v-if="showNumber">{{ card.CardChunk4 }}</span>
-          <span v-else
-            ><i class="fas fa-circle"></i
-            ><i class="fas fa-circle"></i
-            ><i class="fas fa-circle"></i
-            ><i class="fas fa-circle"></i
-          ></span>
+          <span>{{ card.CardChunk4 }}</span>
         </div>
       </div>
     </div>

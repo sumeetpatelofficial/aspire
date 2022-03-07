@@ -32,5 +32,5 @@ export default class ConfirmModal extends Vue {
 }
 </script>
 
-<style scoped lang="scss">   
+<style scoped>   
 </style>
