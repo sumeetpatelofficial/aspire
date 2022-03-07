@@ -75,7 +75,6 @@ export default new Vuex.Store({
       commit(types.REMOVE_CARD_DETAILS, index);
     },
     freezeCard({ commit }, index) {
-      console.log(index)
       commit(types.FREEZE_CARD, index);
     },
   },
