@@ -25,21 +25,20 @@
             <div class="row" :class="{'no-gutters':$screen.width<576}">
               <div class="col-md-6 col-lg-6 col-xl-6">
                 <div class="card-area">                  
-                  <div class="position-relative" v-if="cardList.length">
+                  <div class="position-relative" v-if="$store.state.cardDetails.length">
                     <!-- Card carousel -->
                     <swiper
                       ref="swiper"
                       class="swiper swiper-slider"
                       :options="swiperSliderOption"
                     >
-                      <swiper-slide v-for="(card, c) in cardList" :key="c">
+                      <swiper-slide v-for="(card, c) in $store.state.cardDetails" :key="c">
                         <p class="show-number-toggle">                   
                             <b-link @click="ifIsNumber = !ifIsNumber">
                               <i class="fas" :class="ifIsNumber ? 'fa-eye-slash' : 'fa-eye'"></i> 
                               {{ifIsNumber ? 'Hide card number':'Show card number'}}
                             </b-link>
                         </p>
-
                         <Card :card="card" :showNumber="ifIsNumber" />                        
                       </swiper-slide>                  
                     </swiper>
@@ -187,11 +186,11 @@
             v-model="cardHolderName"
             placeholder="Enter Name"
             v-validate="{ required: true }"
+            :class="[{'is-invalid': errors.has('cardHolderName') }]"
           ></b-form-input>
-        </b-form-group>
-        <span v-show="errors.has('cardHolderName')" class="text-danger m-0"
-          >Name is required.</span
-        >
+          <span v-show="errors.has('cardHolderName')" class="text-danger m-0"
+          >Name is required.</span>
+        </b-form-group>        
         <div class="text-right mt-3">
           <b-button
             variant="light"
@@ -221,12 +220,15 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import ConfirmModal from "@/components/ConfirmModal.vue";
 import Card from "@/components/common/card.vue";
 import TransactionListItem from "@/components/common/transactionListItem.vue";
-
+import extend from 'vee-validate';
 @Component({
   components: {
+    Swiper,
+    SwiperSlide,
     ConfirmModal,
     Card, 
     TransactionListItem
@@ -234,12 +236,11 @@ import TransactionListItem from "@/components/common/transactionListItem.vue";
 })
 export default class MainContentArea extends Vue {
   recentTransactionsList: any = this.$store.state.transactionHistoryList;
-  cardList: any = this.$store.state.cardDetails;
   cardHolderName: any = "";
   ifIsNumber: any = false;
 
   mounted() {
-    this.$store.dispatch("setCardDetails", [
+    this.$store.dispatch("addCardDetails", 
       {
         id: this.randomCVV(),
         cardHolderName: "Sumeet Patel",
@@ -249,10 +250,10 @@ export default class MainContentArea extends Vue {
         CardChunk4: this.randomCardNumber(),
         cvvNumber: this.randomCVV(),
         expireDate: this.randomDate(new Date(2012, 0, 1), new Date()),
-        isFreeze: false,
-        isCancel: false,
+        ifIsFreeze: false,  
+        ifIsCancel: false,
       },
-    ]);
+    );
   }
 
   // slider's options
@@ -282,14 +283,13 @@ export default class MainContentArea extends Vue {
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
-    }
+    },
   };
 
   // adding new start only with user's name for now
   addNewCard() {
     this.$validator.validateAll().then((result) => {
       if (result) {
-        let currentCardDetails = this.cardList;
         let cardDetails = {
           id: this.randomCVV(),
           cardHolderName: this.cardHolderName,
@@ -299,11 +299,10 @@ export default class MainContentArea extends Vue {
           CardChunk4: this.randomCardNumber(),
           cvvNumber: this.randomCVV(),
           expireDate: this.randomDate(new Date(2012, 0, 1), new Date()),
-          isFreeze: false,
-          isCancel: false,
+          ifIsFreeze: false,
+          ifIsCancel: false,
         };
-        let updatedCardrecords = currentCardDetails.push(cardDetails);
-        this.$store.dispatch("setCardDetails", updatedCardrecords);
+        this.$store.dispatch("addCardDetails", cardDetails);
         this.$toasted.show("Card added sucessfully", {
           type: "success",
           theme: "toasted-primary",
@@ -333,9 +332,7 @@ export default class MainContentArea extends Vue {
   }
 
   removeCard() {
-    let newCardDetails = this.cardList.slice(1);
-    Vue.set(this.$store.state.cardDetails, "", newCardDetails);
-    this.$store.dispatch("setCardDetails", newCardDetails);
+    this.$store.dispatch("cancelCardDetails");
     this.$toasted.show("Card removed sucessfully", {
       type: "success",
       theme: "toasted-primary",
